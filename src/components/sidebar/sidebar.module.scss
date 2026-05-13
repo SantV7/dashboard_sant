@@ -1,0 +1,107 @@
+#sidebar {
+    background-color: rgb(22, 28, 41);
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    gap: 20px;
+    border-top-right-radius: 8px;
+    padding: 4.75px;
+    
+      #ul-desktop {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: flex-start;
+        padding-top: 30px;
+        gap: 40px;
+
+          li {
+            list-style: none;
+            width: 100%;
+            
+            a {
+                font-size: 21px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 10px;
+                flex-flow: row nowrap;
+                text-decoration: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                transition: ease 0.4s;
+                color: white;
+                border-radius: 10px;
+                border: 3px solid transparent;
+
+                &:hover {
+                  .icon-hover {
+                    transition: 0.45s;
+                    scale: 1.1;
+                  }
+                  
+                   border-bottom: 3px solid rgba(197, 197, 245, 0.377);
+                    background-color: rgb(62, 62, 87);
+                }
+
+            }
+          }
+      }
+}
+
+#sidebar-sect-icons {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  border-radius: 6px;
+  width: 100%;
+  height: 36%;
+  background-color: rgb(74, 58, 88);
+
+  header {
+    font-size: 20px;
+    color: white;
+    background-color: rgba(32, 27, 41, 0.479);
+    padding: 6.5px;
+    border-radius: 4px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+   .display-icons {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    gap: 40px;
+   }  
+    .icons-coins , .icons-flags {
+      display: flex;
+      gap: 20px;
+      flex-flow: column nowrap;
+    }
+
+}
+
+
+@media screen and (max-width: 768px) {
+  #sidebar {
+     display: none;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #sidebar-sect-icons {
+    height: 28%;
+  }
+
+ 
+  #sidebar > #ul-desktop {
+    gap: 75px;
+  }
+}
