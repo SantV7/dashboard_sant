@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import '../weather/weather.css'
 import gsap from 'gsap';
-import { TiWeatherCloudy } from "react-icons/ti"; //ICON Rain
+import { TiWeatherCloudy } from "react-icons/ti"
 
 
 
@@ -14,10 +14,10 @@ const Weather = () => {
   }
 
   
-    const [tempTokyo, setTempTokyo] = useState('')
-    const [tempBrasilia, setTempBrasilia] = useState('')
-    const [tempBrussels, setTempBrussels] = useState('')
-    const [tempWashington, setTempWashington] = useState('')
+    const [tempTokyo, setTempTokyo] : number  = useState(0)
+    const [tempBrasilia, setTempBrasilia] : number = useState(0)
+    const [tempBrussels, setTempBrussels] : number = useState(0)
+    const [tempWashington, setTempWashington] : number = useState(0)
  
 
   useEffect(() => {

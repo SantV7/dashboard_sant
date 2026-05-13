@@ -6,8 +6,19 @@ import '../convertionCoins/convertion-coins.css'
 import { useEffect, useState } from "react";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 
+
+
+
+interface CoinsType {
+  USD: number
+  EUR: number 
+  BRL: number 
+  JPY: number
+
+}
+
 const ConvertionCoins = () => {
-  const [convertCoins, setConvertCoins] = useState(null)
+  const [convertCoins, setConvertCoins] = useState<CoinsType | null>(null)
   
   useEffect(() => {
 
