@@ -7,15 +7,20 @@ import { useEffect, useState } from "react";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 
 
-
-
 interface CoinsType {
   USD: number
   EUR: number 
   BRL: number 
   JPY: number
-
 }
+
+interface CoinsApi {
+rates: CoinsType
+base: string
+date: string
+}
+
+
 
 const ConvertionCoins = () => {
   const [convertCoins, setConvertCoins] = useState<CoinsType | null>(null)
@@ -29,7 +34,7 @@ const ConvertionCoins = () => {
           throw new Error('Error' + response.status)
         }    
             
-        const responseJson = await response.json()
+        const responseJson : CoinsApi = await response.json()
         setConvertCoins(responseJson.rates)
       }
       catch(erro) {
