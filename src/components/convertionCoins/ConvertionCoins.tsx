@@ -1,109 +1,79 @@
 import { IoMdArrowRoundForward } from "react-icons/io";
-import { BiEuro } from "react-icons/bi";
-import { TbCurrencyDollar } from "react-icons/tb";
-import { PiCurrencyJpyBold } from "react-icons/pi";
-import '../convertionCoins/convertion-coins.css'
 import { useEffect, useState } from "react";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
+import styles from './convertion-coins.module.scss';
+import gsap from "gsap";
 
-
-interface CoinsType {
-  USD: number
-  EUR: number 
-  BRL: number 
-  JPY: number
+interface Rates {
+  EUR: number;
+  BRL: number;
+  JPY: number;
 }
-
-interface CoinsApi {
-rates: CoinsType
-base: string
-date: string
-}
-
-
 
 const ConvertionCoins = () => {
-  const [convertCoins, setConvertCoins] = useState<CoinsType | null>(null)
-  
-  useEffect(() => {
+  const [rates, setRates] = useState<Rates | null>(null);
 
+  useEffect(() => {
     const getValues = async () => {
       try {
-        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD')
-        if(!response.ok) {
-          throw new Error('Error' + response.status)
-        }    
-            
-        const responseJson : CoinsApi = await response.json()
-        setConvertCoins(responseJson.rates)
+        const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+        const data = await response.json();
+        setRates(data.rates);
+      } catch (erro) {
+        console.log('Erro:', erro);
       }
-      catch(erro) {
-        console.log('Erro:', erro)
-      }      
+    };
+    getValues();
+  }, []);
+
+  useEffect(() => {
+    if (rates) {
+      gsap.fromTo(`.${styles['values-box']}`, 
+        { opacity: 0, y: 20 }, 
+        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+      );
     }
-    getValues()
+  }, [rates]);
 
-  }, [])
-
-
-  if (convertCoins === null) {
-    return (
-      <div className="data-card" id="convertion-coins">
-        <h2 className="cards-tittle">Conversão <FaMoneyBillTransfer size={37} /></h2>
-        <div className="area-convertion">
-          <p>Carregando valores das moedas...</p>
-        </div>
-      </div>
-    )
-  }
+  if (!rates) return null;
 
   return (
-    <>
-        <div className="data-card" id="convertion-coins">
-          <h2 className="cards-tittle">Conversão <FaMoneyBillTransfer size={37} /></h2>
+    <div className="data-card" id="convertion-coins">
+      <h2 className="cards-tittle">
+        Conversão <FaMoneyBillTransfer size={28} style={{ marginLeft: '10px' }} />
+      </h2>
 
-          <div className="convertion-info">
-            <div className="local-explication-money">
-              <div className="money-explication">
-                 <div className="type-money">EUR</div>
-                 <div className="type-money">USD</div>
-                 <div className="type-money">BRL</div>
-                 <div className="type-money">JPY</div>
-              </div>
-
-              <div className="arrow-explications">
-                <IoMdArrowRoundForward size={25} />
-                <IoMdArrowRoundForward size={25} />
-                <IoMdArrowRoundForward size={25} />
-                <IoMdArrowRoundForward size={25} />
-              </div>
-
-              <div className="symbols-money">
-                <BiEuro size={25} />
-                <TbCurrencyDollar size={25}/>
-                R$
-                <PiCurrencyJpyBold size={25}/>
-              </div>
-            </div>
-
-            
-            <div className="area-convertion">
-              <p id="main-usd">USD = {(convertCoins.USD * 100).toLocaleString('pt-br', {
-                style: "currency", currency: 'USD'
-              })}</p>
-              <p>100 USD = {(convertCoins.EUR * 100).toLocaleString('pt-br', { style: "currency", currency: 'EUR' })}</p>
-              <p>100 USD = {(convertCoins.BRL * 100).toLocaleString('pt-br', {
-                style: "currency", currency: 'BRL'
-              })}</p>
-              <p>100 USD = {(convertCoins.JPY * 100).toLocaleString('pt-br', {
-                style: "currency", currency: 'JPY'
-              })}</p>
-            </div>
-          </div>
-
+      <div className={styles['symbols-table']}>
+        <div className={styles['row']}>
+          <span className={styles.code}>EUR</span>
+          <IoMdArrowRoundForward className={styles.arrow} />
+          <span className={styles.symbol}>€</span>
         </div>
-    </>
-  )
-}
+        <div className={styles['row']}>
+          <span className={styles.code}>USD</span>
+          <IoMdArrowRoundForward className={styles.arrow} />
+          <span className={styles.symbol}>$</span>
+        </div>
+        <div className={styles['row']}>
+          <span className={styles.code}>BRL</span>
+          <IoMdArrowRoundForward className={styles.arrow} />
+          <span className={styles.symbol}>R$</span>
+        </div>
+        <div className={styles['row']}>
+          <span className={styles.code}>JPY</span>
+          <IoMdArrowRoundForward className={styles.arrow} />
+          <span className={styles.symbol}>¥</span>
+        </div>
+      </div>
 
-export default ConvertionCoins
+      <div className={styles['values-box']}>
+        <p>USD = US$ 100,00</p>
+        <p>100 USD = € {(rates.EUR * 100).toFixed(2).replace('.', ',')}</p>
+        <p>100 USD = R$ {(rates.BRL * 100).toFixed(2).replace('.', ',')}</p>
+        <p>100 USD = JP¥ {(rates.JPY * 100).toLocaleString('pt-BR')}</p>
+      </div>
+    </div>
+  );
+};
+
+export default ConvertionCoins;

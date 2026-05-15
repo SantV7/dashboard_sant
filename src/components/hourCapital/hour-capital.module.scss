@@ -2,11 +2,11 @@
     display: flex;
     flex-flow: row nowrap;
     gap: 15px;
+    align-items: center;
 }
 
 .hour-capital-area {
     display: flex;
-    flex-flow: row nowrap;
     align-items: center;
     justify-content: space-evenly;
     flex-flow: row nowrap;    
@@ -15,7 +15,6 @@
     text-align: left;
     font-size: clamp(17px, 20px, 26px);
 
-
     #capital-name  {
         display: flex;
         flex-flow: column nowrap;
@@ -23,7 +22,7 @@
         gap: 26.75px;
     }
 
-    #capital-name > .name {
+    .name {
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
@@ -49,21 +48,19 @@
     }
 }
 
-
 @media screen and (max-width:768px) {
     .hour-capital-area {
         justify-content: center;
         gap: 12%;
-    }
 
-    .hour-capital-area > #capital-name > .name {
-        align-items: center;
-        border: none;
-        gap: 12.35px;
+        #capital-name > .name {
+            align-items: center;
+            border: none;
+            gap: 12.35px;
+        }
     }
 
     #hour-capital > .time-to-capital {
         padding: 5px 6px;
     }
-    
 }

@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 
-
 * {
     margin: 0;
-    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: var(--fontSn) ;
+    font-family: var(--fontSn);
 }
 
 :root {
@@ -13,24 +12,23 @@
 }
 
 body {
-    background-image:  linear-gradient( 125deg, rgb(0, 0, 0), rgb(26, 24, 36));
-    height: 100vh;
+    background-image: linear-gradient(125deg, rgb(0, 0, 0), rgb(26, 24, 36));
+    min-height: 100vh;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     overflow-x: hidden;
 }
 
-
 .all-grid {
-    height: 100vh;
+    min-height: 100vh;
     display: grid;
     grid-template-columns: 0.9fr 5fr;
-    
 }
 
 @media screen and (max-width: 768px) {
-  .all-grid {
-    grid-template-columns: auto;
-  }
+    .all-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media screen and (min-width: 1300px) {
@@ -38,4 +36,3 @@ body {
         grid-template-columns: 1.08fr 5fr;
     }
 }
-

@@ -8,14 +8,14 @@
     border-top-right-radius: 8px;
     padding: 4.75px;
     
-      #ul-desktop {
+    .ul-desktop {
         display: flex;
         flex-flow: column nowrap;
         align-items: flex-start;
         padding-top: 30px;
         gap: 40px;
 
-          li {
+        li {
             list-style: none;
             width: 100%;
             
@@ -28,80 +28,79 @@
                 flex-flow: row nowrap;
                 text-decoration: none;
                 padding: 8px 16px;
-                border-radius: 4px;
                 transition: ease 0.4s;
                 color: white;
                 border-radius: 10px;
                 border: 3px solid transparent;
 
                 &:hover {
-                  .icon-hover {
-                    transition: 0.45s;
-                    scale: 1.1;
-                  }
-                  
-                   border-bottom: 3px solid rgba(197, 197, 245, 0.377);
+                    border-bottom: 3px solid rgba(197, 197, 245, 0.377);
                     background-color: rgb(62, 62, 87);
+
+                    .icon-hover {
+                        scale: 1.1;
+                    }
                 }
 
+                .icon-hover {
+                    transition: 0.45s;
+                }
             }
-          }
-      }
+        }
+    }
 }
 
-#sidebar-sect-icons {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  text-align: center;
-  padding: 10px;
-  border-radius: 6px;
-  width: 100%;
-  height: 36%;
-  background-color: rgb(74, 58, 88);
-
-  header {
-    font-size: 20px;
-    color: white;
-    background-color: rgba(32, 27, 41, 0.479);
-    padding: 6.5px;
-    border-radius: 4px;
-    width: 100%;
+.sidebar-sect-icons {
     display: flex;
-    justify-content: center;
+    flex-flow: column nowrap;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 40px;
-  }
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    width: 100%;
+    height: 36%;
+    background-color: rgb(74, 58, 88);
 
-   .display-icons {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    gap: 40px;
-   }  
-    .icons-coins , .icons-flags {
-      display: flex;
-      gap: 20px;
-      flex-flow: column nowrap;
+    header {
+        font-size: 20px;
+        color: white;
+        background-color: rgba(32, 27, 41, 0.479);
+        padding: 6.5px;
+        border-radius: 4px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 40px;
     }
 
-}
+    .display-icons {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        gap: 40px;
+    }  
 
-
-@media screen and (max-width: 768px) {
-  #sidebar {
-     display: none;
-  }
+    .icons-coins, .icons-flags {
+        display: flex;
+        gap: 20px;
+        flex-flow: column nowrap;
+    }
 }
 
 @media screen and (max-width: 1000px) {
-  #sidebar-sect-icons {
-    height: 28%;
-  }
+    .sidebar-sect-icons {
+        height: 28%;
+    }
 
- 
-  #sidebar > #ul-desktop {
-    gap: 75px;
-  }
+    #sidebar > .ul-desktop {
+        gap: 75px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #sidebar {
+        display: none;
+    }
 }

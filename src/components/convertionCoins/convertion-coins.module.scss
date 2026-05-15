@@ -1,103 +1,69 @@
-#convertion-coins > h2 {
-    margin-bottom: 16px;
-    display: flex;
-    gap: 20px;
-    flex-flow: row nowrap;
-}
+.convertion-card {
+  background-color: #1a1d23;
+  border-radius: 8px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: white;
+  box-sizing: border-box;
 
-.convertion-info {
+  .cards-tittle {
+    align-self: flex-start;
     display: flex;
-    flex-flow: column nowrap;
-    align-items: start;
-}
-
-.local-explication-money {
-    display: flex;
-    width: 100%;
-    height: 200px;
-    justify-content: center;
-    flex-flow: row nowrap;
-    gap: 50px;
-    margin-bottom: 37px;
-}
-
-.money-explication {
-    display: flex;
-    font-size: 18.75px;
-    flex-flow: column nowrap;
-    gap: 26.7px;
-}
-
-.arrow-explications {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    gap: 20px;
-
-}
-
-.symbols-money {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    gap: 15px;
-    font-size: 21px;
-}
-
-.type-money {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center; 
-    margin-bottom: 10px;
-    gap: 7px;
-}
-
-.area-convertion {
-    display: flex;
-    background-color: rgba(255, 255, 255, 0.144);
-    border-radius: 10px;
-    justify-content: start;
     align-items: center;
-    flex-flow: column nowrap;
-    gap: 35px;
-    padding: 10px;
-    font-size: 18px;
+    gap: 12px;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 30px;
     width: 100%;
- 
-    margin-top: -10px;
-    text-align: center;
-
-    p {
-        text-align: center;
-        width: 100%;
-    }
-
-    #main-usd {
-        font-weight: 600;
-        font-size: 20px;
-    }
+  }
 }
 
+.symbols-table {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 180px;
+  margin-bottom: 30px;
 
-@media screen and (max-width: 768px) {
-    .local-explication-money {
-        width: 47.23%;
-        gap: 17px;
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+
+    .code {
+      width: 40px;
+      text-align: left;
     }
 
-    .area-convertion {
-        width: 80%;
-        height: 80%;
+    .symbol {
+      width: 40px;
+      text-align: right;
     }
+  }
+}
 
-    .money-explication {
-        gap: 24.4px;
-    }
+.values-box {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 35px 20px;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  text-align: center;
+  box-sizing: border-box;
 
-    .convertion-info {
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        gap: 30px;
-    }
- 
+  p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+  }
 }

@@ -1,11 +1,12 @@
 import SideBar from "./components/sidebar/SideBar"
-import '../src/styles/global.css'
-import './styles/main.css'
+import './style/global.css'
+import './style/main.css'
 import Weather from "./components/weather/Weather"
 import HourCapital from "./components/hourCapital/HourCapital"
 import gsap from "gsap"
 import { useEffect } from "react"
 import ConvertionCoins from "./components/convertionCoins/ConvertionCoins"
+
 
 function App() {
 
