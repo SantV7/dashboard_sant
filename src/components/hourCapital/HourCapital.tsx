@@ -4,87 +4,64 @@ import { PiMoonStarsBold } from "react-icons/pi";
 import { MdSunnySnowing } from "react-icons/md";
 import { CiTimer } from "react-icons/ci";
 
+const CAPITALS = [
+  { name: 'Tokyo', zone: 'Asia/Tokyo' },
+  { name: 'Brasília', zone: 'America/Sao_Paulo' },
+  { name: 'Washington', zone: 'America/New_York' },
+  { name: 'Brussels', zone: 'Europe/Brussels' },
+];
+
 const HourCapital = () => {
 
-    const [hourBrasilia, setHourBrasilia] = useState<number>((new Date().getUTCHours() - 3 + 24) % 24)
-    const [hourTokyo, setHourTokyo] = useState<number>((new Date().getUTCHours() + 9 + 24) % 24)
-    const [hourWashington, setHourWashington] = useState<number>((new Date().getUTCHours() - 5 + 24) % 24)
-    const [hourBrussels, setHourBrussels] = useState<number>((new Date().getUTCHours() + 1 + 24) % 24)
+  const [now, setNow] = useState(new Date());
 
-    const [minutes, setMinutes] = useState(new Date().getMinutes())
-    const [seconds, setSeconds] = useState(new Date().getSeconds())      
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const getTimeInfo = (zone: string) => {
+    const timeString = now.toLocaleTimeString('pt-BR', { timeZone: zone, hour12: false });
+    const hour = parseInt(timeString.split(':')[0]);
     
+    const icon = (hour >= 6 && hour < 18) 
+      ? <MdSunnySnowing size={24.65} color='yellow' />
+      : <PiMoonStarsBold size={26} color='rgb(201, 217, 255)'/>;
 
-    useEffect(() => {
-        const intervalHour = setInterval(() => {
-            const nowGetTime = new Date()
-
-            setHourBrasilia((nowGetTime.getUTCHours() - 3 + 24) % 24 )
-            setHourTokyo((nowGetTime.getUTCHours() + 9 + 24) % 24) 
-            setHourWashington((nowGetTime.getUTCHours() - 5 + 24) % 24)
-            setHourBrussels((nowGetTime.getUTCHours() + 1 + 24) % 24)
-
-            setMinutes(nowGetTime.getMinutes())
-            setSeconds(nowGetTime.getSeconds())
-        }, 1000)
-
-        
-
-        return () => clearInterval(intervalHour)
-    },[])
-    
-        const getPeriod = (hour: number) => {
-            if(hour >= 6 && hour < 12) {
-                return <MdSunnySnowing size={24.65} color='yellow' />
-            } else if(hour >= 12 && hour < 18) {
-                return <MdSunnySnowing size={24.65}  color='yellow'/>
-            } else if(hour >= 18 && hour < 23) {
-                return <PiMoonStarsBold size={26} color='rgb(201, 217, 255)'/>
-            } else {
-                return <PiMoonStarsBold size={26} color='rgb(201, 217, 255)'/>
-            }
-        }
-
+    return { timeString, icon };
+  };
 
   return (
     <>
-    <h3 id='tittle-hour' className="cards-tittle">Hora da capital <CiTimer size={34} /></h3>
-    <div className='hour-capital-area'>
+      <h3 id='tittle-hour' className="cards-tittle">
+        Hora da capital <CiTimer size={34} />
+      </h3>
+      
+      <div className='hour-capital-area'>
         <div id='capital-name'>
-            <div className='name'>Tokyo <div>-</div> <div>{getPeriod(hourTokyo)}</div></div>
-            <div className='name'>Brasília <div>-</div> <div>{getPeriod(hourBrasilia)}</div></div>
-            <div className='name'>Washington <div>-</div> <div>{getPeriod(hourWashington)}</div></div>
-            <div className='name'>Brussels <div>-</div> <div>{getPeriod(hourBrussels)}</div></div>
+          {CAPITALS.map(cap => {
+            const { icon } = getTimeInfo(cap.zone);
+            return (
+              <div key={cap.name} className='name'>
+                {cap.name} <div>-</div> <div>{icon}</div>
+              </div>
+            );
+          })}
         </div>
 
         <div id='hour-capital'>
-            <div className='time-to-capital'>
-                {
-                 `${hourTokyo.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}h
-               `}                
-            </div>
-
-            <div className='time-to-capital'>
-                {
-                 `${hourBrasilia.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}h
-               `}
-            </div>
-
-            <div className='time-to-capital'>
-                {
-                 `${hourWashington.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}h
-               `}               
-            </div>
-
-            <div className='time-to-capital'>
-                {
-                 `${hourBrussels.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}h
-               `}               
-            </div>
+          {CAPITALS.map(cap => {
+            const { timeString } = getTimeInfo(cap.zone);
+            return (
+              <div key={cap.name} className='time-to-capital'>
+                {timeString}h
+              </div>
+            );
+          })}
         </div>
-    </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default HourCapital
+export default HourCapital;

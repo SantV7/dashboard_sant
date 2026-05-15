@@ -14,15 +14,15 @@ const Weather = () => {
   }
 
   
-    const [tempTokyo, setTempTokyo] : number  = useState(0)
-    const [tempBrasilia, setTempBrasilia] : number = useState(0)
-    const [tempBrussels, setTempBrussels] : number = useState(0)
-    const [tempWashington, setTempWashington] : number = useState(0)
+    const [tempTokyo, setTempTokyo] = useState<number>(0)
+    const [tempBrasilia, setTempBrasilia] = useState<number>(0)
+    const [tempBrussels, setTempBrussels] = useState<number>(0)
+    const [tempWashington, setTempWashington] = useState<number>(0)
  
 
   useEffect(() => {
    
-    const returnCapitalTemp = (capitalData, setTemp ) => {
+    const returnCapitalTemp = (capitalData: string, setTemp: React.Dispatch<React.SetStateAction<number>>  ) => {
       fetch(`https://api.openweathermap.org/data/2.5/weather?q=${capitalData}&appid=bf9babda0b7e59340e10f1e1dfe80371&units=metric`)
       .then(response => response.json())
       .then(temp => {
