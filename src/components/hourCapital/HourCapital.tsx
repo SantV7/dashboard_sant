@@ -6,10 +6,10 @@ import { CiTimer } from "react-icons/ci";
 
 const HourCapital = () => {
 
-    const [hourBrasilia, setHourBrasilia] = useState((new Date().getUTCHours() - 3 + 24) % 24)
-    const [hourTokyo, setHourTokyo] = useState((new Date().getUTCHours() + 9 + 24) % 24)
-    const [hourWashington, setHourWashington] = useState((new Date().getUTCHours() - 5 + 24) % 24)
-    const [hourBrussels, setHourBrussels] = useState((new Date().getUTCHours() + 1 + 24) % 24)
+    const [hourBrasilia, setHourBrasilia] = useState<number>((new Date().getUTCHours() - 3 + 24) % 24)
+    const [hourTokyo, setHourTokyo] = useState<number>((new Date().getUTCHours() + 9 + 24) % 24)
+    const [hourWashington, setHourWashington] = useState<number>((new Date().getUTCHours() - 5 + 24) % 24)
+    const [hourBrussels, setHourBrussels] = useState<number>((new Date().getUTCHours() + 1 + 24) % 24)
 
     const [minutes, setMinutes] = useState(new Date().getMinutes())
     const [seconds, setSeconds] = useState(new Date().getSeconds())      
@@ -33,7 +33,7 @@ const HourCapital = () => {
         return () => clearInterval(intervalHour)
     },[])
     
-        const getPeriod = (hour) => {
+        const getPeriod = (hour: number) => {
             if(hour >= 6 && hour < 12) {
                 return <MdSunnySnowing size={24.65} color='yellow' />
             } else if(hour >= 12 && hour < 18) {
@@ -60,25 +60,25 @@ const HourCapital = () => {
         <div id='hour-capital'>
             <div className='time-to-capital'>
                 {
-                 `${hourTokyo.toString().padStart('2', 0)}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart('2', 0)}h
+                 `${hourTokyo.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}h
                `}                
             </div>
 
             <div className='time-to-capital'>
                 {
-                 `${hourBrasilia.toString().padStart('2', 0)}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart('2', 0)}h
+                 `${hourBrasilia.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}h
                `}
             </div>
 
             <div className='time-to-capital'>
                 {
-                 `${hourWashington.toString().padStart('2', 0)}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart('2', 0)}h
+                 `${hourWashington.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}h
                `}               
             </div>
 
             <div className='time-to-capital'>
                 {
-                 `${hourBrussels.toString().padStart('2', 0)}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart('2', 0)}h
+                 `${hourBrussels.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}h
                `}               
             </div>
         </div>
